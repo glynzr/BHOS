@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS DOM</title>
+	<style type="text/css">
+		.style1{
+			background-color: purple;
+			color: white;
+			font-style: italic;
+		}
+	</style>
+</head>
+<body id="body">
+	<h1 id="hh">Recolor your background and text</h1>
+	<p>JS DOM manipulation</p>
+	<label>BG COLOR</label><input type="color" name="bg" onchange="bgChange()">
+	<label>TEXT COLOR</label><input type="color" name="txt" onchange="txtChange()">
+
+	<script>
+		function bgChange(){
+			//alert(document.getElementById('sel').value);
+			document.getElementById('body').style.backgroundColor = 
+			document.getElementsByTagName('input')[0].value;
+		}
+		function txtChange(){
+			document.getElementById('body').style.color = document.getElementsByTagName('input')[1].value;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <!-- step-4: creating and loading css and js -->
+        <link rel="stylesheet" href="../css/skeleton.css">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        {{>header}}
+        <h1>Object Data</h1>
+        {{!-- Example-1 --}}
+        <table>
+            {{#each projects.members}}
+                <tr>
+                    <th> {{ name }} </th><td> {{ team }} </td>
+                </tr>
+            {{/each}}
+        </table>
+
+        {{!-- Example: 2 --}}
+            {{!-- {{projects.name}} has the following skills : <br>
+            {{#each projects.skills}}
+                {{this}} <br>
+            {{/each}} --}}
+        {{>footer}}
+    </body>
+</html>

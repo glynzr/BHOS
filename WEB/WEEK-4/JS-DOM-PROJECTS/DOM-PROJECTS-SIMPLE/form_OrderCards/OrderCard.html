@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		form{ font-family: Century Gothic, sans-serif; width: 300px; margin: 0 auto; border: 1px dotted silver; padding: 50px; margin-top: 30px;}
+		h1{ border-bottom: 1px solid silver }
+	</style>
+</head>
+<body>
+<form name="order">
+	<h1>Order CARD</h1>
+	<label><b>Type of cards:</b></label><br><br>
+	<select name="type" onclick="UpdateCost()">
+		<option value="2">VisaCard</option>
+		<option value="3">MasterCard</option>
+		<option value="1">Electron</option>
+	</select>
+	<br><br>
+	<label><b>Type of cards:</b></label>
+	<br><br>
+	<input type="radio" name="tip" value="10" onclick="UpdateCost()">Classic
+	<input type="radio" name="tip" value="30" onclick="UpdateCost()">Gold
+	<input type="radio" name="tip" value="80" onclick="UpdateCost()">Platinum
+	<br><br>
+	<label><b>Extra Services:</b></label>
+	<br><br>
+	<input type="checkbox" id="serv0" value="10.00"  onclick="UpdateCost()"> Online Banking<br>
+	<input type="checkbox" id="serv1" value="3.50" onclick="UpdateCost()"> SMS Notification<br>
+	<br><br>
+	<input type="text" id="totalcost" placeholder="result" value=""><label> AZN</label>
+</form>
+<script src="app.js"></script>
+</body>
+</html>

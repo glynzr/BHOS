@@ -1,0 +1,20 @@
+// TASK description: --------------------------------------------------------------
+- FIRST part of TASK:
+  Use validation, before sending the form data to database
+  FORM FIELDS:
+  - username (min 3, max 15 symbols)
+  - surname (min 5, max 15 symbols)
+  - department
+  - user type (user; admin)
+  - password (min one digit, one lowercase, one uppercase symbols)
+  - repeat password (should be the same as password)
+  - SUBMIT
+  Before posting validate the form, in case of errors, display errors!
+  If successfull, display welcome message and after 3 seconds redirect to index page!
+  - USE .DOTENV for securing sensitive credentilas;
+  - USE password hashing method, and post hashed password to database;
+
+- Second part of TASK:
+  - On register form read department names dynamically from database 
+  - (create departments table and add 3 departments)
+

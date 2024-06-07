@@ -1,0 +1,133 @@
+db.createCollection('products')
+db.products.insertMany(
+[
+{ product : "bottles", quantity : 10000, price: 1.0, madeIn: "Turkey" },
+{ product : "bread", quantity : 200, price: 1.50 },
+{ product : "yogurt", quantity : 80, price: 2.0, madeIn: "Turkey" },
+{ product : "milk", quantity : 100, price: 2.2, madeIn: "Ukraine", status : "Active" },
+{ product : "apple", quantity : 65000, price: 2.3, madeIn: "Turkey", status : "Active" },
+{ product : "honey", quantity : 0, price: 3.5, madeIn: "Romania", status : "Deactive" },
+{ product : "cheese", quantity : 100, price: 2.2, madeIn: "Ukraine", status : "Active" },
+{ product : "banana", quantity : 100000, price: 2.3, madeIn: "Turkey", status : "Active" },
+{ product : "sugar", quantity : 0, price: 3.5, madeIn: "Russia", status : "Deactive" },
+{ product : "tea", quantity : 3470, price: 2.3, madeIn: "Turkey", status : "Active" },
+{ product : "coffee", quantity : 0, price: 10.0, madeIn: "Italy", status : "Deactive" },
+{ product : "cottage cheese", quantity : 5500, price: 1.3, madeIn: "Lituania", status : "Active" },
+{ product : "cappuchino", quantity : 0, price: 0.5, madeIn: "Italy", status : "Deactive" },
+{ product : "coffee turkish", quantity : 3000, price: 0.4, madeIn: "Turkey", status : "Active" },
+{ product : "biscuits", quantity : 0, price: 1.5, madeIn: "Ukraine", status : "Deactive" },
+{ product : "orange", quantity : 3350, price: 1.5, madeIn: "Turkey", status : "Active" },
+{ product : "cake", quantity : 0, price: 3.5, madeIn: "Turkey", status : "Deactive" },
+{ product : "vienna cake", quantity : 600, price: 2.3, madeIn: "Austria", status : "Active" },
+{ product : "brown sugar", quantity : 0, price: 3.5, madeIn: "Austria", status : "Deactive" },
+{ product : "sugar", quantity : 3450, price: 2.5, madeIn: "Turkey", status : "Active" },
+{ product : "tea", quantity : 4500, price: 1.8, madeIn: "Turkey", status : "Active" },
+{ product : "coffee", quantity : 0, price: 14.5, madeIn: "Turkey", status : "Deactive" },
+{ product : "yogurt", quantity : 120, price: 2.4, madeIn: "Italy", status : "Active" }
+]
+)
+
+// Using FIND() function---------------------------------------------------------------------
+// find : active products, madeIn by Turkey and quantity is greater than 10000
+db.products.find(
+    { status: 'Active',
+      $and: [ {madeIn: 'Turkey'}, {quantity: {$gt: 10000}} ]
+    }
+)
+
+// find: only listed products. and specific fields
+db.products.find(
+    { product: { $in:['apple','orange'] } },
+    { _id: 0, product: 1, madeIn: 1, price: 1 }
+)
+
+
+//-------------------------------------------------------------------------------------------
+// Aggregation pipeline gives you a way to transform and combine documents in your collection
+// AGGREGATE STAGES: ''$GROUP', '$MATCH', '$PROJECT', '$CONCAT', '$LOOKUP'
+
+// aggregate: quantity>1000 and quantity<=10000
+db.products.aggregate( [
+    { $match : { quantity : { $gt : 1000, $lte : 10000 } } },
+    { $group: { _id: '$madeIn', count: { $sum: 1 } } }
+] );
+
+// aggregate: group products by 'madeIn'
+db.products.aggregate( [
+    { $group: { _id: '$madeIn', count: { $sum: 1 } } }
+] );
+
+// aggregate: group by 'madeIn' products with status:'Active'
+db.products.aggregate( [
+    { $match : { status : 'Active' } },
+    { $group: { _id: '$madeIn', count: { $sum: 1 } } }
+] );
+
+
+// aggregate: CONCAT more fields, but only string datatypes
+db.products.aggregate(
+   [
+      { $match : { status : 'Deactive' } },
+      { $project: { productCountry: { $concat: [ "$product", " - ", "$madeIn" ] } } }
+   ]
+)
+
+
+// aggregate: `total sum of products, count of product types`
+db.products.aggregate(
+   [
+     { $group: {
+           _id: { madeIn: '$madeIn' },
+           totalProducts: { $sum: "$quantity" },
+           ProductTypes: { $sum: 1 }
+     } }
+   ]
+)
+
+
+// JOIN 2(TWO) COLLECTIONS, USING $LOOKUP (AGGREGATION)-------------------------------------
+{
+   $lookup:
+     {
+       from: <collection to join>,
+       localField: <field from the input documents>,
+       foreignField: <field from the documents of the "from" collection>,
+       as: <output array field>
+     }
+}
+
+//Perform a Single Equality Join with $lookup-----------------------------------------------
+//Create a collection orders with the following documents:
+
+db.orders.insert([
+   { "_id" : 1, "item" : "almonds", "price" : 12, "quantity" : 2 },
+   { "_id" : 2, "item" : "pecans", "price" : 20, "quantity" : 1 },
+   { "_id" : 3  }
+])
+
+//Create another collection inventory with the following documents:
+
+db.inventory.insert([
+   { "_id" : 1, "sku" : "almonds", "description": "product 1", "instock" : 120 },
+   { "_id" : 2, "sku" : "bread", "description": "product 2", "instock" : 80 },
+   { "_id" : 3, "sku" : "cashews", "description": "product 3", "instock" : 60 },
+   { "_id" : 4, "sku" : "pecans", "description": "product 4", "instock" : 70 },
+   { "_id" : 5, "sku": null, "description": "Incomplete" },
+   { "_id" : 6 }
+])
+
+/* The following aggregation operation on the orders collection joins the documents 
+from orders with the documents from the inventory collection using the fields item 
+from the orders collection and the sku field from the inventory collection:      */
+
+db.orders.aggregate([
+   {
+     $lookup:
+       {
+         from: "inventory",
+         localField: "item",
+         foreignField: "sku",
+         as: "inventory_docs"
+       }
+  }
+])

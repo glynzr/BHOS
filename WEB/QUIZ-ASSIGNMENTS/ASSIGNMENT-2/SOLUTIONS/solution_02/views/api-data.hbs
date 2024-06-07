@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='../css/skeleton.css'>
+    <title>Document</title>
+</head>
+<body>
+    {{> header}}
+
+    {{#if entries.length}}
+        <table>
+        <tr>
+            <th>API</th>
+            <th>Description</th>
+            <th>Auth</th>
+            <th>HTTPS</th>
+            <th>Cors</th>
+            <th>Link</th>
+            <th>Category</th>
+        </tr>
+        {{#each entries}}
+            <tr>
+                <td>{{this.API}}</td>
+                <td>{{this.Description}}</td>
+                <td>{{this.Auth}}</td>
+                <td>{{this.HTTPS}}</td>
+                <td>{{this.Cors}}</td>
+                <td>{{this.Link}}</td>
+                <td>{{this.Category}}</td>
+            </tr>
+        {{/each}}
+    </table>
+    {{else}}
+        <h3>Data is not loaded yet. Please try again later.</h3>
+    {{/if}}
+    
+    {{> footer}}
+</body>
+</html>

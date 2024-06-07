@@ -1,0 +1,54 @@
+# DATABASE : azerbaijan
+# TABLES : regions , administrative_divisions
+
+# 'SELECT' OPERATOR
+# SELECT division_name, capital, area, population FROM administrative_divisions;
+
+# 'WHERE' CLAUSE
+# SELECT division_name, capital, area, population, region FROM administrative_divisions
+# WHERE region = 'Aran';
+
+#  'OR' OPERATOR
+/*
+SELECT division_name, capital, area, population, region FROM administrative_divisions
+WHERE
+region = 'Aran' OR region = 'Yukhari-Karabakh'
+ORDER BY region, division_name;
+*/
+
+# 'AND' OPERATOR
+/*
+SELECT division_name, capital, area, population, region FROM administrative_divisions
+WHERE
+region = 'Yukhari-Karabakh'
+AND area > 1000.00;
+*/
+/*
+SELECT division_name, capital, area, population, region FROM administrative_divisions
+WHERE
+region = 'Yukhari-Karabakh'
+AND 
+area BETWEEN 1000.00 AND 1200.00;
+*/
+
+/*
+# 'IN' OPERATOR
+SELECT division_name, capital, area, population, region FROM administrative_divisions
+WHERE
+region IN('Yukhari-Karabakh', 'Aran')
+AND 
+area BETWEEN 1000.00 AND 1200.00;
+;
+
+
+# 'LIKE' OPERATOR
+SELECT division_name, capital, area, population, region FROM administrative_divisions
+WHERE division_name LIKE 'B%';
+*/
+
+/*
+# 'IS NULL' OPERATOR
+SELECT division_name, capital, area, population, region FROM administrative_divisions
+WHERE
+capital IS NOT NULL;
+*/

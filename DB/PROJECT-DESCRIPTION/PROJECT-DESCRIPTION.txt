@@ -1,0 +1,13 @@
+DBMS PROJECT --------------------------------------------------------------------
+Create relational database by following requirements:
+---------------------------------------------------------------------------------
+- Database topic should be unique ;
+- Minimum number of tables: 8 ;
+- Create ER Diagram of your DB ;
+- Explanation of ER Diagram to Relational Model conversion ;
+- Create Relational Model of your DB ; 
+- Create Physical tables and insert experimental datas to your tables ;
+- Minimum number of queries and subqueries 5 ;
+- Minimum number of stored functions 3 ;
+- Minimum number of stored procedures 5 ;
+- Minimum number of triggers 5 ;

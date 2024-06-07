@@ -1,0 +1,1 @@
+alert('using client side JavaScript')

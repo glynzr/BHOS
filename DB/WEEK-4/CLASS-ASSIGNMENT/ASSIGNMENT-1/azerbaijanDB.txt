@@ -1,0 +1,85 @@
+# DATABASE OF AZERBAIJAN
+
+/*
+# CREATE TABLE : regions
+CREATE TABLE regions(
+regionID INT(2) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+regionName VARCHAR(30) NOT NULL,
+area FLOAT(10, 2) NOT NULL,
+population INT(10)
+);
+
+# INSERT VALUE
+INSERT INTO regions (regionName, area, population)
+VALUES
+("Absheron", 5.420, 2613000),
+("Ganja-Qazakh", 12.480, 1191700);
+
+# ADD NEW COLUMN
+ALTER TABLE regions
+ADD capital VARCHAR(25) AFTER regionName;
+
+# ADD RECORDS INTO NEW COLUMN
+UPDATE regions
+SET capital = "Baku"
+WHERE regionName = "Absheron";
+
+UPDATE regions
+SET capital = "Ganja"
+WHERE regionID= 2;
+
+SELECT regionName, capital from regions;
+
+# ADD NEW VALUES INTO TABLE
+INSERT INTO regions (regionName, area, population)
+VALUES
+("Shaki-Zaqatala", 8.969, 543400),
+("Lankaran", 6.140, 926500);
+
+SELECT * FROM regions
+WHERE
+area> 6.00;
+
+UPDATE regions
+SET capital = "Shaki"
+WHERE regionName = "Shaki-Zaqatala";
+UPDATE regions
+SET capital = "Lankaran"
+WHERE regionName = "Lankaran";
+
+# USING SELECT STATEMENT, EQUAL, NOT EQUAL, OR, LIKE, LIMIT, OFFSET
+SELECT * FROM regions
+WHERE
+capital != "Ganja";
+
+SELECT * FROM regions
+WHERE
+regionName = "Absheron" OR capital = "Shaki";
+
+SELECT * FROM regions
+WHERE regionName LIKE '%a%';
+
+SELECT * FROM regions
+ORDER BY area DESC;
+
+SELECT * FROM regions
+LIMIT 2;
+
+SELECT * FROM regions
+LIMIT 2, 1;
+
+
+DELETE FROM regions
+WHERE capital = "Baku";
+
+
+# DELETE ALL RECORDS
+DELETE FROM regions;
+*/
+
+# REMOVE COMPLETE TABLE WITH STRUCTURE
+DROP TABLE regions;
+
+
+
+

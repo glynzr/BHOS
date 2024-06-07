@@ -1,0 +1,165 @@
+mysql> CREATE DATABASE sport;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> USE sport;
+Database changed
+mysql> CREATE TABLE clubs(
+    -> clubID INT(2) auto_increment primary key,
+    -> clubName VARCHAR(60),
+    -> region VARCHAR(60)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.10 sec)
+
+mysql> CREATE TABLE members(
+    -> memberID INT(3) auto_increment primary key,
+    -> name VARCHAR(40),
+    -> surname VARCHAR(40),
+    -> clubID INT(2)
+    -> );
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> INSERT INTO clubs(clubName, region)
+    -> VALUES
+    -> ('Dinamo', 'Baku'),
+    -> ('Shahdag', 'Qusar'),
+    -> ('Araz', 'Nakhchivan'),
+    -> ('Zengazur', 'Zengazur'),
+    -> ('Kapaz', 'Ganja'),
+    -> ('Shirvan', 'Salyan');
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO members(name, surname, clubID)
+    -> VALUES
+    -> ('Turan', 'Quliyev', 1),
+    -> ('Aydin', 'Huseyn', 1),
+    -> ('Ceyran', 'Mammadli', 3),
+    -> ('Madina', 'Aliyeva', 2),
+    -> ('Turan', 'Mammadli', 3),
+    -> ('Boran', 'Tufan', 4);
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from clubs;
++--------+----------+------------+
+| clubID | clubName | region     |
++--------+----------+------------+
+|      1 | Dinamo   | Baku       |
+|      2 | Shahdag  | Qusar      |
+|      3 | Araz     | Nakhchivan |
+|      4 | Zengazur | Zengazur   |
+|      5 | Kapaz    | Ganja      |
+|      6 | Shirvan  | Salyan     |
++--------+----------+------------+
+6 rows in set (0.01 sec)
+
+mysql> select * from members;
++----------+--------+----------+--------+
+| memberID | name   | surname  | clubID |
++----------+--------+----------+--------+
+|        1 | Turan  | Quliyev  |      1 |
+|        2 | Aydin  | Huseyn   |      1 |
+|        3 | Ceyran | Mammadli |      3 |
+|        4 | Madina | Aliyeva  |      2 |
+|        5 | Turan  | Mammadli |      3 |
+|        6 | Boran  | Tufan    |      4 |
++----------+--------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO clubs(clubName, region)
+    -> VALUES
+    -> ('Goygol', 'Ganja');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from clubs;
++--------+----------+------------+
+| clubID | clubName | region     |
++--------+----------+------------+
+|      1 | Dinamo   | Baku       |
+|      2 | Shahdag  | Qusar      |
+|      3 | Araz     | Nakhchivan |
+|      4 | Zengazur | Zengazur   |
+|      5 | Kapaz    | Ganja      |
+|      6 | Shirvan  | Salyan     |
+|      7 | Goygol   | Ganja      |
++--------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from members;
++----------+--------+----------+--------+
+| memberID | name   | surname  | clubID |
++----------+--------+----------+--------+
+|        1 | Turan  | Quliyev  |      1 |
+|        2 | Aydin  | Huseyn   |      1 |
+|        3 | Ceyran | Mammadli |      3 |
+|        4 | Madina | Aliyeva  |      2 |
+|        5 | Turan  | Mammadli |      3 |
+|        6 | Boran  | Tufan    |      4 |
++----------+--------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT members.`name`, members.`surname`, clubs.`clubName`
+    -> FROM members, clubs
+    -> WHERE clubs.`clubID` = members.`clubID`;
++--------+----------+----------+
+| name   | surname  | clubName |
++--------+----------+----------+
+| Turan  | Quliyev  | Dinamo   |
+| Aydin  | Huseyn   | Dinamo   |
+| Ceyran | Mammadli | Araz     |
+| Madina | Aliyeva  | Shahdag  |
+| Turan  | Mammadli | Araz     |
+| Boran  | Tufan    | Zengazur |
++--------+----------+----------+
+6 rows in set (0.01 sec)
+
+mysql> SELECT A.`name`, A.`surname`, B.`clubName`
+    -> FROM `members` AS A, `clubs` AS B
+    -> WHERE A.`clubID` = B.`clubID`;
++--------+----------+----------+
+| name   | surname  | clubName |
++--------+----------+----------+
+| Turan  | Quliyev  | Dinamo   |
+| Aydin  | Huseyn   | Dinamo   |
+| Ceyran | Mammadli | Araz     |
+| Madina | Aliyeva  | Shahdag  |
+| Turan  | Mammadli | Araz     |
+| Boran  | Tufan    | Zengazur |
++--------+----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT A.`clubName`, B.`name`, B.`surname`
+    -> FROM `clubs` AS A
+    -> LEFT JOIN `members` AS B
+    -> ON A.`clubID` = B.`clubID`;
++----------+--------+----------+
+| clubName | name   | surname  |
++----------+--------+----------+
+| Dinamo   | Turan  | Quliyev  |
+| Dinamo   | Aydin  | Huseyn   |
+| Shahdag  | Madina | Aliyeva  |
+| Araz     | Ceyran | Mammadli |
+| Araz     | Turan  | Mammadli |
+| Zengazur | Boran  | Tufan    |
+| Kapaz    | NULL   | NULL     |
+| Shirvan  | NULL   | NULL     |
+| Goygol   | NULL   | NULL     |
++----------+--------+----------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT clubs.`clubName`, GROUP_CONCAT(members.`name`, ' ', members.`surname`) AS all_members
+    -> FROM clubs, members
+    -> WHERE
+    -> clubs.`clubID` = members.`clubID`
+    -> GROUP BY clubs.`clubName`;
++----------+--------------------------------+
+| clubName | all_members                    |
++----------+--------------------------------+
+| Araz     | Ceyran Mammadli,Turan Mammadli |
+| Dinamo   | Turan Quliyev,Aydin Huseyn     |
+| Shahdag  | Madina Aliyeva                 |
+| Zengazur | Boran Tufan                    |
++----------+--------------------------------+
+4 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,36 @@
+CREATE DATABASE sport;
+USE sport;
+
+CREATE TABLE clubs(
+clubID INT(2) auto_increment primary key,
+clubName VARCHAR(60),
+region VARCHAR(60)
+);
+
+CREATE TABLE members(
+memberID INT(3) auto_increment primary key,
+name VARCHAR(40),
+surname VARCHAR(40),
+clubID INT(2),
+FOREIGN KEY(clubID) REFERENCES clubs(clubID)
+ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+INSERT INTO clubs(clubName, region)
+VALUES
+('Dinamo', 'Baku'),
+('Shahdag', 'Qusar'),
+('Araz', 'Nakhchivan'),
+('Zengazur', 'Zengazur'),
+('Kapaz', 'Ganja'),
+('Shirvan', 'Salyan'),
+('Goygol', 'Ganja');
+
+INSERT INTO members(name, surname, clubID)
+VALUES
+('Turan', 'Quliyev', 1),
+('Aydin', 'Huseyn', 1),
+('Ceyran', 'Mammadli', 3),
+('Madina', 'Aliyeva', 2),
+('Turan', 'Mammadli', 3),
+('Boran', 'Tufan', 4);

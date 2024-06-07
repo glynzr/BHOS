@@ -1,0 +1,37 @@
+{
+    "books": [
+      {
+        "title": "The Catcher in the Rye",
+        "author": {
+          "first_name": "J.D.",
+          "last_name": "Salinger"
+        },
+        "publisher": {
+          "name": "Little, Brown and Company",
+          "location": "Boston, MA"
+        }
+      },
+      {
+        "title": "To Kill a Mockingbird",
+        "author": {
+          "first_name": "Harper",
+          "last_name": "Lee"
+        },
+        "publisher": {
+          "name": "J. B. Lippincott & Co.",
+          "location": "Philadelphia, PA"
+        }
+      },
+      {
+        "title": "1984",
+        "author": {
+          "first_name": "George",
+          "last_name": "Orwell"
+        },
+        "publisher": {
+          "name": "Secker & Warburg",
+          "location": "London, UK"
+        }
+      }
+    ]
+}

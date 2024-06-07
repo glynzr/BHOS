@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON file data</title>
+    <link rel="stylesheet" href="../css/skeleton.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+        {{>header}}
+        {{!-- Reading API data --}}
+        <h1>API Data: list of all universities in the USA</h1>
+        <table>
+            {{#each apiData}}
+                <tr>
+                    <th>{{this.name}}</th>
+                    <td>{{this.web_pages}}</td>
+                </tr>
+            {{/each}}
+        </table>
+        {{>footer}}
+</body>
+</html>

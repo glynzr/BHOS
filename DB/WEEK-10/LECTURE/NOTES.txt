@@ -1,0 +1,25 @@
+TRIGGERS notes:
+--------------------------------------------------------------------------------------------------------------
+
+ - INSERT TRIGGER
+	- BEFORE : As statistic we usually get one record less as statistic. 
+	- AFTER  : As statistic we usually get one record more as statistic.
+
+ - UPDATE TRIGGER
+	- BEFORE/AFTER : in both cases we get the same quantity of records.
+	
+	USE CASES : 'The BEFORE UPDATE' triggers go together with the 'BEFORE INSERT' triggers. 
+	If any restrictions exist before inserting data, the limits should be there before updating as well.
+	For example: before update check age restriction ; before update check previous and new passwords ; 
+
+	USE CASES : The AFTER UPDATE trigger helps keep track of committed changes to data. Most often, any 
+	changes after inserting information also happen after updating data. Any successful updates to the 
+	age data should also update the average value of ages in newly created trigger table.
+
+ - DELETE TRIGGER
+	- BEFORE : As statistic we usually get one record more as statistic. 
+	- AFTER  : As statistic we usually get one record less as statistic.
+	USE CASES : usually we use for statistical purposes, archive/backup purposes!
+	For example : The BEFORE DELETE trigger is useful for logging/backup any table change attempts.
+	For example : AFTER DELETE. Deleting a record from the table person updates the average_age table with 
+	the new average

@@ -1,0 +1,78 @@
+1. Write a Pandas program to split the following dataframe by school code and get mean, min, and max value of age for each school.
+Test Data:
+   school class            name date_Of_Birth   age  height  weight  address
+S1   s001     V  Alberto Franco     15/05/2002   12    173      35  street1
+S2   s002     V    Gino Mcneill     17/05/2002   12    192      32  street2
+S3   s003    VI     Ryan Parkes     16/02/1999   13    186      33  street3
+S4   s001    VI    Eesha Hinton     25/09/1998   13    167      30  street1
+S5   s002     V    Gino Mcneill     11/05/2002   14    151      31  street2
+S6   s004    VI    David Parkes     15/09/1997   12    159      32  street4
+-------------------------------------------------------------------------------------------------------------------------------------------
+2. Write a Pandas program to split the following dataframe into groups based on customer id and create a list of order date for each group.
+Test Data:
+    ord_no  purch_amt    ord_date  customer_id  salesman_id
+0    70001     150.50  2012-10-05         3005         5002
+1    70009     270.65  2012-09-10         3001         5005
+2    70002      65.26  2012-10-05         3002         5001
+3    70004     110.50  2012-08-17         3009         5003
+4    70007     948.50  2012-09-10         3005         5002
+5    70005    2400.60  2012-07-27         3007         5001
+6    70008    5760.00  2012-09-10         3002         5001
+7    70010    1983.43  2012-10-10         3004         5006
+8    70003    2480.40  2012-10-10         3009         5003
+9    70012     250.45  2012-06-27         3008         5002
+10   70011      75.29  2012-08-17         3003         5007
+11   70013    3045.60  2012-04-25         3002         5001
+-------------------------------------------------------------------------------------------------------------------------------------------
+3. Write a Pandas program to join the two given dataframes along columns and assign all data.
+Test Data:
+student_data1:
+  student_id              name  marks
+0         S1  Danniella Fenton    200
+1         S2      Ryder Storey    210
+2         S3      Bryce Jensen    190
+3         S4         Ed Bernal    222
+4         S5       Kwame Morin    199
+student_data2:
+  student_id              name  marks
+0         S4  Scarlette Fisher    201
+1         S5  Carla Williamson    200
+2         S6       Dante Morse    198
+3         S7    Kaiser William    219
+4         S8   Madeeha Preston    201
+-------------------------------------------------------------------------------------------------------------------------------------------
+4. Write a Pandas program to find and replace the missing values in a given DataFrame which do not have any valuable information.
+Test Data:
+   ord_no purch_amt    ord_date customer_id salesman_id
+0   70001     150.5           ?        3002        5002
+1     NaN    270.65  2012-09-10        3001        5003
+2   70002     65.26         NaN        3001           ?
+3   70004     110.5  2012-08-17        3003        5001
+4     NaN     948.5  2012-09-10        3002         NaN
+5   70005    2400.6  2012-07-27        3001        5002
+6      --      5760  2012-09-10        3001        5001
+7   70010         ?  2012-10-10        3004           ?
+8   70003     12.43  2012-10-10          --        5003
+9   70012    2480.4  2012-06-27        3002        5002
+10    NaN    250.45  2012-08-17        3001        5003
+11  70013    3045.6  2012-04-25        3001          --
+-------------------------------------------------------------------------------------------------------------------------------------------
+5. Write a Pandas program to find and drop the missing values from World alcohol consumption dataset.
+Test Data:
+   Year       WHO region                Country Beverage Types  Display Value
+0  1986  Western Pacific               Viet Nam           Wine           0.00
+1  1986         Americas                Uruguay          Other           0.50
+2  1985           Africa           Cte d'Ivoire           Wine           1.62
+3  1986         Americas               Colombia           Beer           4.27
+4  1987         Americas  Saint Kitts and Nevis           Beer           1.98   
+-------------------------------------------------------------------------------------------------------------------------------------------
+6. Write a Pandas program to find out the alcohol consumption details in the year '1986' or '1989' where WHO region is 'Americas' or 'Europe' from the world alcohol consumption dataset.
+Test Data:
+   Year       WHO region                Country Beverage Types  Display Value
+0  1986  Western Pacific               Viet Nam           Wine           0.00
+1  1986         Americas                Uruguay          Other           0.50
+2  1985           Africa           Cte d'Ivoire           Wine           1.62
+3  1986         Americas               Colombia           Beer           4.27
+4  1987         Americas  Saint Kitts and Nevis           Beer           1.98   
+-------------------------------------------------------------------------------------------------------------------------------------------
+ 

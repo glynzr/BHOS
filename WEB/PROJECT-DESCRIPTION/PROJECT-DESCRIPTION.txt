@@ -1,0 +1,12 @@
+WEB PROJECT ---------------------------------------------------------------------
+Create 'CRUD based app' (or 'security simulation app') by following requirements:
+---------------------------------------------------------------------------------
+- Web topic should be unique ;
+- Use front-end (template engine + css framework) ;
+- CRUD operations ;
+- Simple Authentification as user and admin ;
+- Some Application security measures :
+	- use validation and sanitization ;
+	- use sessions/cookies ;
+	- use environment variable ;
+	- secure connection to DB/tables (prevent sql injection, use hashing ...) 

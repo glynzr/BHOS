@@ -1,0 +1,112 @@
+# show tables---------------------------------------------
+show dbs
+
+# create database-----------------------------------------
+use mycustomers
+
+# create user---------------------------------------------
+db.createUser(
+   {
+     user: "mahammad",
+     pwd: passwordPrompt(),  // Or  "<cleartext password>"
+     roles: [ "readWrite", "dbAdmin" ]
+   }
+)
+
+# create collection---------------------------------------
+db.createCollection('customers')
+
+# see collections-----------------------------------------
+show collections
+
+# try to insert a document--------------------------------
+db.customers.insertOne({firstName: "Ayla", lastName: "Turkay"})
+
+# to see documents----------------------------------------
+db.customers.find()
+
+# insert multiply documents-------------------------------
+db.customers.insertMany(
+    [
+        {firstName: "Ilkay", lastName: "Sharif"},
+        {firstName: "Altan", lastName: "Akbar", gender: "male", email: "akbar@msn.com"}
+    ]
+)
+
+db.customers.insertMany(
+    [
+        { firstName: "Emily", lastname: "Shakir", gender: "male" },
+        { firstName: "Banu", lastname: "Gunesh", gender: "female", email: "banu@msn.com" },
+        { firstName: "Attila", lastname: "Alper", gender: "male", specialty: "developer" },
+    ]
+)
+
+# insert one document-------------------------------------
+db.customers.insertOne(
+{
+    firstName: "Mammad",
+    lastName: "Mammadali",
+    memberships: ["membership-1", "membership-2"],
+    address: {
+        street: "Rustamov str",
+        city: "Baku"
+    },
+    contacts: [
+        { name: "Yasemin", relationship: "friend"},
+        { name: "Orkhan", relationship: "colleague"}
+    ]
+}
+)
+
+# fo find COUNT-------------------------------------------
+db.customers.count()
+db.customers.find().count()  //find({lastName: "Sharif"}) 
+
+# delete one, delete by unique id-------------------------
+db.customers.deleteOne( { _id: ObjectId("5fe235937f36d418c4209f43")} );
+db.customers.deleteOne( { firstName: "Ayla" } );
+
+
+# UPDATE--------------------------------------------------
+# stroring previous fields and adding new one...
+db.customers.updateOne(
+    { "firstName" : "Altan" },
+    { $set: { "phone" : "+9908004088" } }
+)
+
+# remove specific field by `unset' operator
+db.customers.updateOne(
+    { "firstName" : "Altan" },
+    { $unset: {gender: 1} }
+)
+
+# FIND----------------------------------------------------
+db.customers.find( { "firstName": "Altan" } )
+
+# find and display only fields:---------------------------
+db.customers.find( { }, { firstName: 1, lastName: 1 } )
+db.customers.find( { }, { lastName: 1 } )
+db.customers.find().limit( 2 )
+
+# Using COMPARISON operators
+# before that, let's add some numeric type fields, which we do not have
+db.customers.updateOne(
+    { "firstName" : "Ilkay"  },
+    { $set: {age: 6} }
+)
+db.customers.updateOne(
+    { "firstName" : "Altan"  },
+    { $set: {age: 16} }
+)
+
+# using filtering through comparison operators-------------
+# https://docs.mongodb.com/manual/reference/operator/query-comparison/
+
+db.customers.find( { age: { $gt: 10 } } )
+db.customers.find( { age: { $in: [6, 16] } } )  // in an array
+
+# The following operation uses the $regex operator to return documents in the 
+customers collection where lastName field starts with the letter A (or is "LIKE A%")
+db.customers.find(
+   { "firstName": { $regex: /^A/ } }
+)

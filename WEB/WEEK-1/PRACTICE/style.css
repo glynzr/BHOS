@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+#cl1 {
+    background-color: red;
+}
+
+#cl2 {
+    background-color: green;
+}
+
+.yeni {
+    font-style: italic;
+}
+
+.sonuncu {
+    font-size: 33px;
+    background-color: yellow;
+}
+
+div {
+    background-color: blueviolet;
+    width: 45%;
+    height: 200px;
+    float: left;
+    margin: 20px 30px;
+    padding: 30px 50px 70px 90px;
+}
+
+div p#cl3 {
+    background-color: blue;
+}
+
+/* span {
+    font-size: 55px;
+    color: yellow;
+} */
+
+div p#cl1 span {
+    color: blue;
+    font-size: 55px;
+}

@@ -1,0 +1,39 @@
+-- data types in mysql
+-- ENUM
+-- BOOLEAN
+-- JSON
+
+-- create table table_name(
+--     col ENUM ('value1', 'value2', 'value3')
+-- )
+-- create database today;
+-- use today; 
+
+-- create table tickets(
+--     id INT primary key auto_increment,
+--     title varchar(100) NOT NULL,
+--     priority ENUM('Low', 'Medium', 'High') NOT NULL
+-- );
+
+insert into tickets(title, priority)
+values
+('scan for viruses','Medium'),
+('scan for boot','High'),
+('create a new user','High'),
+('upgrade windows for 11 version','Low'),
+('install new game','Low');
+
+alter table tickets
+add completed BOOLEAN after priority;
+
+update tickets
+set completed = 0 where id = 5;
+
+// type: JSON
+create table events(
+    id int auto_increment primary key,
+    event_name varchar(50),
+    visitor varchar(10),
+    properties JSON,
+    browser JSON
+);

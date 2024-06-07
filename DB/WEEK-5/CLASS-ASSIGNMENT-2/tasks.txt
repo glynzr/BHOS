@@ -1,0 +1,13 @@
+# TASK-1 : 'GET COUNT OF CUSTOMERS BY EACH COUNTRY WHERE "COUNT > 10" '
+
+#  TASK-2 :"USING SIMPLE IF : to return N/A if the state is NULL"
+
+# TASK-3 : "to sort customers by states if the state is not NULL,  or sort the country in case the state is NULL"
+
+# TASK-4 : "Select customers and creditLimit, name creditLimit AS 'HIGH' IF > 20000.00 ELSE 'LOW' "
+
+# SUBQUERIES ---------------------------------------------------------------------------------------------
+
+# TASK-5 : "Find customers whose creditLimit are greater than the average of creditLimit, using a subquery"
+
+

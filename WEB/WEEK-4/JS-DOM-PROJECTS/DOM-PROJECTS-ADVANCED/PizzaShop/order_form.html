@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		form{ font-family: Century Gothic, sans-serif; width: 300px; margin: 0 auto; border: 1px dotted silver; padding: 50px; margin-top: 30px;}
+		h1{ border-bottom: 1px solid silver }
+		table td{ width: 33%; border-bottom: 1px solid silver; padding: 7px}
+		table, tr, td{ border-collapse: collapse;}
+		mark{ padding: 3px 8px; background-color: red; color: white; cursor: pointer;}
+		td:last-child{ text-align: right; }
+		th{ text-align: left; padding: 7px; }
+		thead{ border-bottom: 4px solid silver; }
+	</style>
+</head>
+<body>
+<form name="orders">
+	<h1>Order Pizza</h1>
+	<label><b>Type of pizza:</b></label><br><br>
+	<select name="type" id="type">
+		<option value="5.5">Tropicana</option>
+		<option value="5.25">Margarita</option>
+		<option value="5.0">Vegeterian</option>
+	</select>
+	<br><br>
+	<label><b>Size of pizza:</b></label>
+	<br><br>
+	<input type="radio" name="sizze" value="1" id="rad01">
+	<label for="rad01">small</label>
+	<input type="radio" name="sizze" value="1.5" id="rad02">
+	<label for="rad02">medium</label>
+	<input type="radio" name="sizze" value="2" id="rad03">
+	<label for="rad03">big</label>
+	<br><br>
+	<input type="button" id="add" value="ADD ORDER">
+	<br><br>
+	<table id="tb">
+		<thead>
+			<th>Pizza</th><th>Size</th><th></th>
+		</thead>
+		<tbody></tbody>
+	</table>
+	<h2 id="totalcost" ></h2>
+</form>
+<script src="app.js"></script>
+</body>
+</html>

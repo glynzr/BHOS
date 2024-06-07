@@ -1,0 +1,110 @@
+A Note on Using Several Window Functions - Exercise --------------------------------------------------------
+
+Exercise #1:+++
+Obtain a result set containing the salary values each manager has signed a contract for. To obtain the data, 
+refer to the "employees" database.
+Use window functions to add the following two columns to the final output:
+- a column containing the row number of each row from the obtained dataset, starting from 1.
+- a column containing the sequential row numbers associated to the rows for each manager, where their highest 
+salary has been given a number equal to the number of rows in the given partition, and their lowest - the number 1.
+Finally, while presenting the output, make sure that the data has been ordered by the values in the first of 
+the row number columns, and then by the salary values for each partition in ascending order.
+
+Exercise #2:++++++
+Obtain a result set containing the salary values each manager has signed a contract for. To obtain the data, 
+refer to the "employees" database.
+Use window functions to add the following two columns to the final output:
+- a column containing the row numbers associated to each manager, where their highest salary has been given 
+a number equal to the number of rows in the given partition, and their lowest - the number 1.
+- a column containing the row numbers associated to each manager, where their highest salary has been given 
+the number of 1, and the lowest - a value equal to the number of rows in the given partition.
+Let your output be ordered by the salary values associated to each manager in descending order.
+
+Hint: Please note that you don't need to use an ORDER BY clause in your SELECT statement to retrieve the 
+desired output.
+
+
+
+The PARTITION BY Clause VS the GROUP BY Clause - Exercise ----------------------------------------------------
+
+Exercise #1:+++++++
+Find out the lowest salary value each employee has ever signed a contract for. To obtain the desired output, 
+use a subquery containing a window function, as well as a window specification introduced with the help of the 
+WINDOW keyword. Also, to obtain the desired result set, refer only to data from the “salaries” table.
+
+Exercise #2:++++++
+Again, find out the lowest salary value each employee has ever signed a contract for. Once again, to obtain 
+the desired output, use a subquery containing a window function. This time, however, introduce the window 
+specification in the field list of the given subquery.
+
+NOTE : To obtain the desired result set, refer only to data from the “salaries” table.
+
+Exercise #3:+++++
+Once again, find out the lowest salary value each employee has ever signed a contract for. This time, to 
+obtain the desired output, avoid using a window function. Just use an aggregate function and a subquery.
+To obtain the desired result set, refer only to data from the “salaries” table.
+
+Exercise #4:+++++++
+Once more, find out the lowest salary value each employee has ever signed a contract for. To obtain the 
+desired output, use a subquery containing a window function, as well as a window specification introduced 
+with the help of the WINDOW keyword. Moreover, obtain the output without using a GROUP BY clause in the 
+outer query. To obtain the desired result set, refer only to data from the “salaries” table.
+
+Exercise #5:+++++
+Find out the second-lowest salary value each employee has ever signed a contract for. To obtain the desired 
+output, use a subquery containing a window function, as well as a window specification introduced with the 
+help of the WINDOW keyword. Moreover, obtain the desired result set without using a GROUP BY clause in the 
+outer query.
+
+NOTE : To obtain the desired result set, refer only to data from the “salaries” table.
+
+
+The MySQL RANK() and DENSE_RANK() Window Functions - Exercise -----------------------------------------------
+
+Exercise #1:++++
+Write a query containing a window function to obtain all salary values that employee number 10560 has ever 
+signed a contract for. Order and display the obtained salary values from highest to lowest.
+
+Exercise #2:++++
+Write a query that upon execution, displays the number of salary contracts that each manager has ever signed
+while working in the company.
+
+Exercise #3:++++
+Write a query that upon execution retrieves a result set containing all salary values that employee 10560 
+has ever signed a contract for. Use a window function to rank all salary values from highest to lowest in 
+a way that equal salary values bear the same rank and that gaps in the obtained ranks for subsequent rows 
+are allowed.
+
+Exercise #4:+++++
+Write a query that upon execution retrieves a result set containing all salary values that employee 10560 
+has ever signed a contract for. Use a window function to rank all salary values from highest to lowest in 
+a way that equal salary values bear the same rank and that gaps in the obtained ranks for subsequent rows 
+are not allowed.
+
+
+Working with MySQL Ranking Window Functions and Joins Together - Exercise -------------------------------------
+
+Exercise #1:++++++
+Write a query that ranks the salary values in descending order of all contracts signed by employees numbered 
+between 10500 and 10600 inclusive. Let equal salary values for one and the same employee bear the same rank. 
+Also, allow gaps in the ranks obtained for their subsequent rows.
+Use a join on the “employees” and “salaries” tables to obtain the desired result.
+
+Exercise #2:++++
+Write a query that ranks the salary values in descending order of the following contracts from the "employees" 
+database:
+- contracts that have been signed by employees numbered between 10500 and 10600 inclusive.
+- contracts that have been signed at least 4 full-years after the date when the given employee was hired in 
+the company for the first time.
+In addition, let equal salary values of a certain employee bear the same rank. Do not allow gaps in the ranks 
+obtained for their subsequent rows.
+
+NOTE : Use a join on the “employees” and “salaries” tables to obtain the desired result.
+
+
+MySQL Aggregate Functions in the Context of Window Functions - Part I-Exercise ------------------------------
+
+Exercise #1:++++
+Create a query that upon execution returns a result set containing the employee numbers, contract salary 
+values, start, and end dates of the first ever contracts that each employee signed for the company.
+To obtain the desired output, refer to the data stored in the "salaries" table.

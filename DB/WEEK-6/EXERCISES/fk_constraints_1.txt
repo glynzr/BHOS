@@ -1,0 +1,339 @@
+mysql> CREATE TABLE clubs(
+    -> clubID INT(2) auto_increment primary key,
+    -> clubName VARCHAR(60),
+    -> region VARCHAR(60)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.09 sec)
+
+mysql> CREATE TABLE members(
+    -> memberID INT(3) auto_increment primary key,
+    -> name VARCHAR(40),
+    -> surname VARCHAR(40),
+    -> clubID INT(2),
+    -> FOREIGN KEY(clubID) REFERENCES clubs(clubID)
+    -> ON DELETE CASCADE ON UPDATE CASCADE
+    -> );
+Query OK, 0 rows affected, 2 warnings (0.07 sec)
+
+mysql> INSERT INTO clubs(clubName, region)
+    -> VALUES
+    -> ('Dinamo', 'Baku'),
+    -> ('Shahdag', 'Qusar'),
+    -> ('Araz', 'Nakhchivan'),
+    -> ('Zengazur', 'Zengazur'),
+    -> ('Kapaz', 'Ganja'),
+    -> ('Shirvan', 'Salyan'),
+    -> ('Goygol', 'Ganja');
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO members(name, surname, clubID)
+    -> VALUES
+    -> ('Turan', 'Quliyev', 1),
+    -> ('Aydin', 'Huseyn', 1),
+    -> ('Ceyran', 'Mammadli', 3),
+    -> ('Madina', 'Aliyeva', 2),
+    -> ('Turan', 'Mammadli', 3),
+    -> ('Boran', 'Tufan', 4);
+Query OK, 6 rows affected (0.04 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from clubs;
++--------+----------+------------+
+| clubID | clubName | region     |
++--------+----------+------------+
+|      1 | Dinamo   | Baku       |
+|      2 | Shahdag  | Qusar      |
+|      3 | Araz     | Nakhchivan |
+|      4 | Zengazur | Zengazur   |
+|      5 | Kapaz    | Ganja      |
+|      6 | Shirvan  | Salyan     |
+|      7 | Goygol   | Ganja      |
++--------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from members;
++----------+--------+----------+--------+
+| memberID | name   | surname  | clubID |
++----------+--------+----------+--------+
+|        1 | Turan  | Quliyev  |      1 |
+|        2 | Aydin  | Huseyn   |      1 |
+|        3 | Ceyran | Mammadli |      3 |
+|        4 | Madina | Aliyeva  |      2 |
+|        5 | Turan  | Mammadli |      3 |
+|        6 | Boran  | Tufan    |      4 |
++----------+--------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> delete from clubs
+    -> where clubID = 1;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from clubs;
++--------+----------+------------+
+| clubID | clubName | region     |
++--------+----------+------------+
+|      2 | Shahdag  | Qusar      |
+|      3 | Araz     | Nakhchivan |
+|      4 | Zengazur | Zengazur   |
+|      5 | Kapaz    | Ganja      |
+|      6 | Shirvan  | Salyan     |
+|      7 | Goygol   | Ganja      |
++--------+----------+------------+
+6 rows in set (0.03 sec)
+
+mysql> select * from members;
++----------+--------+----------+--------+
+| memberID | name   | surname  | clubID |
++----------+--------+----------+--------+
+|        3 | Ceyran | Mammadli |      3 |
+|        4 | Madina | Aliyeva  |      2 |
+|        5 | Turan  | Mammadli |      3 |
+|        6 | Boran  | Tufan    |      4 |
++----------+--------+----------+--------+
+4 rows in set (0.03 sec)
+
+mysql> drop table members;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> drop table clubs;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE clubs(
+    -> clubID INT(2) auto_increment primary key,
+    -> clubName VARCHAR(60),
+    -> region VARCHAR(60)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.07 sec)
+
+mysql> CREATE TABLE members(
+    -> memberID INT(3) auto_increment primary key,
+    -> name VARCHAR(40),
+    -> surname VARCHAR(40),
+    -> clubID INT(2),
+    -> FOREIGN KEY(clubID) REFERENCES clubs(clubID)
+    -> ON DELETE SET NULL ON UPDATE CASCADE
+    -> );
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> INSERT INTO clubs(clubName, region)
+    -> VALUES
+    -> ('Dinamo', 'Baku'),
+    -> ('Shahdag', 'Qusar'),
+    -> ('Araz', 'Nakhchivan'),
+    -> ('Zengazur', 'Zengazur'),
+    -> ('Kapaz', 'Ganja'),
+    -> ('Shirvan', 'Salyan'),
+    -> ('Goygol', 'Ganja');
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> INSERT INTO members(name, surname, clubID)
+    -> VALUES
+    -> ('Turan', 'Quliyev', 1),
+    -> ('Aydin', 'Huseyn', 1),
+    -> ('Ceyran', 'Mammadli', 3),
+    -> ('Madina', 'Aliyeva', 2),
+    -> ('Turan', 'Mammadli', 3),
+    -> ('Boran', 'Tufan', 4);
+Query OK, 6 rows affected (0.04 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> describe members;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| memberID | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(40) | YES  |     | NULL    |                |
+| surname  | varchar(40) | YES  |     | NULL    |                |
+| clubID   | int         | YES  | MUL | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.05 sec)
+
+mysql> delete from clubs
+    -> where clubID = 3;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from clubs;
++--------+----------+----------+
+| clubID | clubName | region   |
++--------+----------+----------+
+|      1 | Dinamo   | Baku     |
+|      2 | Shahdag  | Qusar    |
+|      4 | Zengazur | Zengazur |
+|      5 | Kapaz    | Ganja    |
+|      6 | Shirvan  | Salyan   |
+|      7 | Goygol   | Ganja    |
++--------+----------+----------+
+6 rows in set (0.03 sec)
+
+mysql> select * from members;
++----------+--------+----------+--------+
+| memberID | name   | surname  | clubID |
++----------+--------+----------+--------+
+|        1 | Turan  | Quliyev  |      1 |
+|        2 | Aydin  | Huseyn   |      1 |
+|        3 | Ceyran | Mammadli |   NULL |
+|        4 | Madina | Aliyeva  |      2 |
+|        5 | Turan  | Mammadli |   NULL |
+|        6 | Boran  | Tufan    |      4 |
++----------+--------+----------+--------+
+6 rows in set (0.03 sec)
+
+mysql> SHOW CREATE TABLE members;
++---------+-----------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                |
++---------+-----------------------------------------------------------------------------------------------------------------------+
+| members | CREATE TABLE `members` (
+  `memberID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  `surname` varchar(40) DEFAULT NULL,
+  `clubID` int DEFAULT NULL,
+  PRIMARY KEY (`memberID`),
+  KEY `clubID` (`clubID`),
+  CONSTRAINT `members_ibfk_1` FOREIGN KEY (`clubID`) REFERENCES `clubs` (`clubID`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.04 sec)
+
+mysql> ALTER TABLE members
+    -> DROP FOREIGN KEY `members_ibfk_1`;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SHOW CREATE TABLE members;
++---------+-----------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                |
++---------+-----------------------------------------------------------------------------------------------------------------------+
+| members | CREATE TABLE `members` (
+  `memberID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  `surname` varchar(40) DEFAULT NULL,
+  `clubID` int DEFAULT NULL,
+  PRIMARY KEY (`memberID`),
+  KEY `clubID` (`clubID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE `members`
+    -> ADD CONSTRAINT `members_fk_4`
+    -> FOREIGN KEY(`clubID`) REFERENCES `clubs`(`clubID`) ON UPDATE CASCADE ON DELETE RESTRICT;
+Query OK, 6 rows affected (0.11 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> DELETE FROM clubs
+    -> WHERE clubID=2;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`sport`.`members`, CONSTRAINT `members_fk_4` FOREIGN KEY (`clubID`) REFERENCES `clubs` (`clubID`) ON DELETE RESTRICT ON UPDATE CASCADE)
+mysql> UPDATE clubs
+    -> SET clubID = 22
+    -> WHERE clubID = 2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from clubs;
++--------+----------+----------+
+| clubID | clubName | region   |
++--------+----------+----------+
+|      1 | Dinamo   | Baku     |
+|      4 | Zengazur | Zengazur |
+|      5 | Kapaz    | Ganja    |
+|      6 | Shirvan  | Salyan   |
+|      7 | Goygol   | Ganja    |
+|     22 | Shahdag  | Qusar    |
++--------+----------+----------+
+6 rows in set (0.03 sec)
+
+mysql> select * from members;
++----------+--------+----------+--------+
+| memberID | name   | surname  | clubID |
++----------+--------+----------+--------+
+|        1 | Turan  | Quliyev  |      1 |
+|        2 | Aydin  | Huseyn   |      1 |
+|        3 | Ceyran | Mammadli |   NULL |
+|        4 | Madina | Aliyeva  |     22 |
+|        5 | Turan  | Mammadli |   NULL |
+|        6 | Boran  | Tufan    |      4 |
++----------+--------+----------+--------+
+6 rows in set (0.03 sec)
+
+mysql> drop table members;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> drop table clubs;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE clubs(clubID INT(2) auto_increment primary key,clubName VARCHAR(60),region VARCHAR(60));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> INSERT INTO clubs(clubName, region)VALUES('Dinamo', 'Baku'),('Shahdag', 'Qusar'),('Araz', 'Nakhchivan'),('Zengazur', 'Zengazur'),('Kapaz', 'Ganja'),('Shirvan', 'Salyan'),('Goygol', 'Ganja');
+Query OK, 7 rows affected (0.05 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE members(memberID INT(3) auto_increment primary key,name VARCHAR(40),surname VARCHAR(40),clubID INT(2),FOREIGN KEY(`clubID`) REFERENCES clubs(`clubID`) ON UPDATE CASCADE ON DELETE RESTRICT);
+Query OK, 0 rows affected, 2 warnings (0.16 sec)
+
+mysql> SHOW CREATE TABLE members;
++---------+-----------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                |
++---------+-----------------------------------------------------------------------------------------------------------------------+
+| members | CREATE TABLE `members` (
+  `memberID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  `surname` varchar(40) DEFAULT NULL,
+  `clubID` int DEFAULT NULL,
+  PRIMARY KEY (`memberID`),
+  KEY `clubID` (`clubID`),
+  CONSTRAINT `members_ibfk_1` FOREIGN KEY (`clubID`) REFERENCES `clubs` (`clubID`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> INSERT INTO members(name, surname, clubID)VALUES('Turan', 'Quliyev', 1),('Aydin', 'Huseyn', 1),('Ceyran', 'Mammadli', 3),('Madina', 'Aliyeva', 2),('Turan', 'Mammadli', 3),('Boran', 'Tufan', 4);
+Query OK, 6 rows affected (0.04 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> delete from clubs
+    -> where clubID = 2;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`sport`.`members`, CONSTRAINT `members_ibfk_1` FOREIGN KEY (`clubID`) REFERENCES `clubs` (`clubID`) ON DELETE RESTRICT ON UPDATE CASCADE)
+mysql> UPDATE clubs
+    -> SET clubID = 33 WHERE clubID = 3;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from members;
++----------+--------+----------+--------+
+| memberID | name   | surname  | clubID |
++----------+--------+----------+--------+
+|        1 | Turan  | Quliyev  |      1 |
+|        2 | Aydin  | Huseyn   |      1 |
+|        3 | Ceyran | Mammadli |     33 |
+|        4 | Madina | Aliyeva  |      2 |
+|        5 | Turan  | Mammadli |     33 |
+|        6 | Boran  | Tufan    |      4 |
++----------+--------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> describe clubs;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| clubID   | int         | NO   | PRI | NULL    | auto_increment |
+| clubName | varchar(60) | YES  |     | NULL    |                |
+| region   | varchar(60) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.04 sec)
+
+mysql> SELECT `clubs`.`clubName`, GROUP_CONCAT(SUBSTRING(`members`.`name`, 1,1), '.', `members`.`surname`) AS `all_names`FROM `clubs`, `members`WHERE `clubs`.`clubID` = `members`.`clubID`GROUP BY `clubs`.`clubName`;
++----------+-----------------------+
+| clubName | all_names             |
++----------+-----------------------+
+| Araz     | C.Mammadli,T.Mammadli |
+| Dinamo   | T.Quliyev,A.Huseyn    |
+| Shahdag  | M.Aliyeva             |
+| Zengazur | B.Tufan               |
++----------+-----------------------+
+4 rows in set (0.00 sec)
+
+mysql>
